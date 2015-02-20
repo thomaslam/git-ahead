@@ -18,6 +18,22 @@
   </head>
   <body>
     <h1>Hello, world!</h1>
+    <script type="text/javascript">
+      window.open('https://github.com/login/oauth/authorize?client_id=1e7dcd030f5944a36576');
+      // Get the authorization code from the url that was returned by GitHub
+
+      var authCode = getAuthCode(window.location.href);
+
+      // Extract the auth code from the original URL
+
+      function getAuthCode(url){
+          var error = url.match(/[&\?]error=([^&]+)/);
+          if (error) {
+              throw 'Error getting authorization code: ' + error[1];
+          }
+          return url.match(/[&\?]code=([\w\/\-]+)/)[1];
+      }
+    </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
